@@ -1,405 +1,407 @@
-# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M4
-
-# IAPR-4- Module 4 - FoC
-## 7. Implementation of Functions.
-## 8. Implementation of passing parameters.
-# Ex.No:16
-  Implement a C program to read a date in the format DD/MM/YYYY and determine whether the entered date is valid. The program should check the correctness of the day, month, and year, including leap year calculations for February.
-
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+## 9. Implementation of recursion.
+## 10. Implementation of programs using pointer arithmetic.
+# Ex.No:21
+  Implement a C program to demonstrate call by value and call by reference by swapping two integers using separate functions.
+# Date : 
 # Aim:
- To implement a C program that validates a user-entered date using a function without parameters and without return value, ensuring the correctness of day, month, year, and leap year conditions.
+ To implement a C program that illustrates the difference between call by value and call by reference by swapping two integer variables using two separate functions.
 # Algorithm:
 ### Step 1:
   Start
 ### Step 2: 
   Include the standard input-output library: #include<stdio.h>.
 ### Step 3:
-### Call the function validateDate().
-### Inside validateDate() function:
+  Declare two functions:
+  - `swapv(int, int)` for swapping using call by value  
+  - `swapr(int *, int *)` for swapping using call by reference
 ### Step 4: 
-  Declare variables dd, mm, and yy.
+  In the `main()` function, declare two integer variables `a` and `b` and initialize them with values (e.g., 10 and 20).
 ### Step 5: 
-  Ask the user to enter a date in DD/MM/YYYY format.
+  Print the values of `a` and `b` before calling `swapv()`.
 ### Step 6: 
-  Read the date values using scanf.
+  Call the function `swapv(a, b)` and print the values of `a` and `b` after the function call to show that call by value does not change the original values.
 ### Step 7: 
-  Check if the year is between *1900 and 9999*.
- - If the year is invalid, display *"Year is not valid"* and stop further checks.
+  Print the values of `a` and `b` before calling `swapr()`.
 ### Step 8: 
-  Check if the month is between *1 and 12*.
-- If the month is invalid, display *"Month is not valid"* and stop further checks.
+  Call the function `swapr(&a, &b)` using the addresses of `a` and `b`.
 ### Step 9: 
-  If the month has *31 days, check if the day is between **1 and 31*.
+  Print the values of `a` and `b` after the `swapr()` function call to show that call by reference successfully swaps the original values.
 ### Step 10: 
-  If the month has *30 days, check if the day is between **1 and 30*.
+  Inside `swapv(x, y)` function:
+  - **Step 10.1:** Swap the values of `x` and `y` using a temporary variable.  
+  - **Step 10.2:** Print the swapped values (formal parameters).
 ### Step 11: 
-  If the month is *February*:
-  - Check if the day is between *1 and 28, or if the day is **29, verify if it's a **leap year*.
+  Inside `swapr(*x, *y)` function:
+  - **Step 11.1:** Swap the values pointed to by `x` and `y`.  
+  - **Step 11.2:** Print the swapped values (affects actual parameters).
 ### Step 12: 
-  If any valid condition is satisfied, display *"Date is valid."*
-### Step 13: 
-  Otherwise, display *"Date is invalid."*
-### Step 14: 
   Stop
 # Program:
+```c
+#include <stdio.h>
 
-#include<stdio.h>
-
-void validateDate(){
-    int dd, mm, yy;
-    scanf("%d/%d/%d", &dd, &mm, &yy);
-
-    if(yy < 1900 || yy > 9999){
-        printf("Year is not valid\n");
-        return;
-    }
-
-    if(mm < 1 || mm > 12){
-        printf("Month is not valid\n");
-        return;
-    }
-
-    int isValid = 0;
-
-    if(mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12){
-        if(dd >= 1 && dd <= 31) isValid = 1;
-    } else if(mm == 4 || mm == 6 || mm == 9 || mm == 11){
-        if(dd >= 1 && dd <= 30) isValid = 1;
-    } else if(mm == 2){
-        if(dd >= 1 && dd <= 28) isValid = 1;
-        else if(dd == 29 && ((yy % 4 == 0 && yy % 100 != 0) || (yy % 400 == 0))) isValid = 1;
-    }
-
-    if(isValid)
-        printf("Date is valid.\n");
-    else
-        printf("Date is invalid.\n");
+// Step 3: Function for swapping using call by value
+void swapv(int x, int y) {
+    int temp;
+    temp = x;
+    x = y;
+    y = temp;
+    printf("Inside swapv (formal parameters swapped): a = %d, b = %d\n", x, y);
 }
 
-int main(){
-    validateDate();
+// Step 3: Function for swapping using call by reference
+void swapr(int *x, int *y) {
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+    printf("Inside swapr (actual parameters swapped): a = %d, b = %d\n", *x, *y);
+}
+
+int main() {
+    int a = 10, b = 20;   // Step 4: Initialize variables
+
+    // Step 5: Print before swapv
+    printf("Before swapv: a = %d, b = %d\n", a, b);
+
+    // Step 6: Call swapv
+    swapv(a, b);
+    printf("After swapv (no change in actual values): a = %d, b = %d\n\n", a, b);
+
+    // Step 7: Print before swapr
+    printf("Before swapr: a = %d, b = %d\n", a, b);
+
+    // Step 8: Call swapr
+    swapr(&a, &b);
+    printf("After swapr (actual values swapped): a = %d, b = %d\n", a, b);
+
     return 0;
 }
 
-
+```
 # Output:
-<img width="569" height="405" alt="image" src="https://github.com/user-attachments/assets/b5367198-3f40-43d3-9352-df41f4647ed2" />
+<img width="1350" height="746" alt="image" src="https://github.com/user-attachments/assets/b31113cc-a8ec-4dd9-8127-d2d5aeca6e3a" />
 
 # Result: 
-Thus, the program was implemented and executed successfully, and the required output was obtained.
+  Thus, the program was implemented and executed successfully, and the required output was obtained.
 
-# Ex.No:17
-  Develop a C program to read two numbers from the user and determine the maximum and minimum values. Use user-defined functions with arguments and return values—one function to find the maximum (max()) and another to find the minimum (min()).
 
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:22
+  Implement a C program to generate the Fibonacci series using a recursive function. The program should accept a positive integer n and display the first n terms of the Fibonacci sequence.
+# Date : 
 # Aim:
- To develop a C program that uses functions with parameters and return values to compute and display the maximum and minimum of two user-entered numbers.
+  To implement a C program that uses a recursive function to generate and display the Fibonacci series for a given number of terms.
 # Algorithm:
 ### Step 1:
   Start
 ### Step 2: 
   Include the standard input-output library: #include<stdio.h>.
-### Step 3: 
-  Declare variables num1, num2, maximum, and minimum.
-### Step 4: 
-  Ask the user to enter two numbers.
-### Step 5: 
-  Read the numbers using scanf.
-### Step 6: 
-  Call the function max(num1, num2).
-### Step 7: 
-  Inside function max(num1, num2):
-- *Step 7.1:* Receive two integer arguments.  
-- *Step 7.2:* Compare the two numbers.  
-- *Step 7.3:* If num1 > num2, return num1.  
-- *Step 7.4:* Otherwise, return num2.
-### Step 8: 
-  Store the returned value in maximum.
-### Step 9: 
-  Call the function min(num1, num2).
-### Step 10: 
-  Inside function min(num1, num2):
-- *Step 10.1:* Receive two integer arguments.  
-- *Step 10.2:* Compare the two numbers.  
-- *Step 10.3:* If num1 > num2, return num2.  
-- *Step 10.4:* Otherwise, return num1.
-### Step 11: 
-  Store the returned value in minimum.
-### Step 12: 
-  Display the returned maximum and minimum values.
-### Step 13: 
-  Stop
-# Program:
-
-#include<stdio.h>
-
-int max(int a, int b){
-    if(a > b)
-        return a;
-    else
-        return b;
-}
-
-int min(int a, int b){
-    if(a > b)
-        return b;
-    else
-        return a;
-}
-
-int main(){
-    int num1, num2, maximum, minimum;
-
-    scanf("%d %d", &num1, &num2);
-
-    maximum = max(num1, num2);
-    minimum = min(num1, num2);
-
-    printf("Maximum: %d\n", maximum);
-    printf("Minimum: %d\n", minimum);
-
-    return 0;
-}
-
-
-# Output:
-<img width="504" height="289" alt="image" src="https://github.com/user-attachments/assets/9a3bba82-ba04-42b6-bb59-07aa4287fc9c" />
-
-# Result: 
-Thus, the program was implemented and executed successfully, and the required output was obtained.
-
-# Ex.No:18
-  Develop a C program to convert temperatures between Celsius and Fahrenheit: Convert Celsius to Fahrenheit using a function that returns the converted value. Convert Fahrenheit to Celsius using another function that returns the converted value. Display the results in the main() function.
-
-# Aim:
- To develop a C program that converts temperatures between Celsius and Fahrenheit using functions with return values.
-# Algorithm:
-### Step 1:
-  Start
-### Step 2: 
-  Include the standard input-output library: #include<stdio.h>.  
 ### Step 3:
- Declare function prototypes:
- - float celtof();  
- - float ftocel();
-### Step 4: 
-  Enter the main() function.
+  Declare a recursive function `fibo(int x)` that returns the Fibonacci number at position `x`.  
+### Step 4:
+  In the `main()` function, declare variables `n` and `i`.  
 ### Step 5:
-  Call the celtof() function to convert Celsius to Fahrenheit.
-### Step 6: 
-  Inside celtof() function:
- - Declare float variables C and F.  
- - Display the message: *"Enter the temperature in Celsius"*.  
- - Read the value of C from the user.  
- - Calculate Fahrenheit using the formula: F = (C * 9 / 5) + 32.  
- - Return F to main().
-### Step 7: 
-  Print the returned Fahrenheit value in main().
-### Step 8: 
-  Call the ftocel() function to convert Fahrenheit to Celsius.
-### Step 9: 
-  Inside ftocel() function:
- - Declare float variables f and celsius.  
- - Display the message: *"Enter the temperature in Fahrenheit"*.  
- - Read the value of f from the user.  
- - Calculate Celsius using the formula: celsius = (f - 32) * 5 / 9.  
- - Return celsius to main().
-### Step 10: 
- Print the returned Celsius value in main().
-### Step 11: 
- Stop
+  Prompt the user to enter a positive integer `n`.  
+### Step 6:
+  Read the value of `n`.  
+### Step 7:
+  Display a message indicating that the Fibonacci series of `n` terms will be printed.  
+### Step 8:
+  Use a `for` loop from `i = 0` to `i < n` to:  
+  - **Step 8.1:** Call the recursive function `fibo(i)`  
+  - **Step 8.2:** Print the returned Fibonacci value  
+### Step 9:
+ Define the recursive function `fibo(x)` as follows:  
+ - **Step 9.1:** If `x == 0` or `x == 1`, return `x`.  
+ - **Step 9.2:** Otherwise, return `fibo(x - 1) + fibo(x - 2)`.  
+### Step 10:
+  Stop
 # Program:
+```c
+#include <stdio.h>
 
-#include<stdio.h>
-
-float celtof(){
-    float C, F;
-    printf("Enter the temperature in Celsius: ");
-    scanf("%f", &C);
-    F = (C * 9 / 5) + 32;
-    return F;
+// Step 3: Recursive function to return Fibonacci number at position x
+int fibo(int x) {
+    if (x == 0 || x == 1) {
+        return x;   // Base case
+    } else {
+        return fibo(x - 1) + fibo(x - 2);  // Recursive case
+    }
 }
 
-float ftocel(){
-    float f, celsius;
-    printf("Enter the temperature in Fahrenheit: ");
-    scanf("%f", &f);
-    celsius = (f - 32) * 5 / 9;
-    return celsius;
-}
+int main() {
+    int n, i;
 
-int main(){
-    float F, C;
+    // Step 5: Prompt user
+    printf("Enter the number of terms: ");
+    scanf("%d", &n);
 
-    F = celtof();
-    printf("Temperature in Fahrenheit: %.2f\n", F);
+    // Step 7: Display message
+    printf("Fibonacci series of %d terms:\n", n);
 
-    C = ftocel();
-    printf("Temperature in Celsius: %.2f\n", C);
+    // Step 8: Generate series
+    for (i = 0; i < n; i++) {
+        printf("%d ", fibo(i));
+    }
+    printf("\n");
 
     return 0;
 }
-
-
+```
 # Output:
-<img width="546" height="319" alt="image" src="https://github.com/user-attachments/assets/4ffd1df4-4623-438f-aa99-7dc18d1b0cb8" />
+<img width="1348" height="743" alt="image" src="https://github.com/user-attachments/assets/c630f120-5094-45d8-85e6-6da4d68e0e55" />
 
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
-# Ex.No:19
-  Build a C program to print the elements of a given 4×4 matrix in spiral order starting from the top-left element and moving clockwise,using a user-defined parameterized function without return spiralPrint().
 
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:23
+   Implement a C program to demonstrate recursion by printing a sequence of even or odd numbers from a given lower limit to an upper limit, with each recursive call progressing by 2.
+# Date : 
 # Aim:
- To build a C program to display the elements of a 2D array in spiral form, traversing the outer elements first and then moving inward in a clockwise direction, using a user-defined parameterized function without return spiralPrint().
+  To implement a C program that uses a recursive function to print even or odd numbers in a specified range based on the starting value provided by the user.
 # Algorithm:
 ### Step 1:
   Start
 ### Step 2: 
-  Include the standard input-output library: #include<stdio.h>.  
-### Step 3: 
-  Define constants R and C for the number of rows and columns in the matrix.
-### Step 4: 
-  Declare a function spiralPrint(int m, int n, int a[R][C]) to print the matrix in spiral order.
-### Step 5: 
-  Inside spiralPrint() function:
- - Initialize variables:  
-   - k = 0 → starting row index  
-   - l = 0 → starting column index  
-   - m → ending row index  
-   - n → ending column index  
- - Repeat the following while k < m and l < n:
-   - a. *Print the top row from left to right*:  
-     - Loop from column l to n-1 and print a[k][i].  
-     - Increment k.       
-   - b. *Print the last column from top to bottom*:  
-     - Loop from row k to m-1 and print a[i][n-1].  
-     - Decrement n.       
-   - c. **If k < m, print the bottom row from right to left**:  
-     - Loop from column n-1 to l and print a[m-1][i].  
-     - Decrement m.       
-   - d. **If l < n, print the first column from bottom to top**:  
-     - Loop from row m-1 to k and print a[i][l].  
-     - Increment l.
-### Step 6: 
-  In the main() function:
-- Declare and initialize a 4×4 matrix a.  
-- Call spiralPrint(R, C, a) to print the elements in spiral order.
-### Step 7: 
+  Include the standard input-output library: #include<stdio.h>. 
+### Step 3:
+  Declare a recursive function `printEvenOdd(int cur, int limit)` to print numbers from `cur` to `limit` with a step of 2.
+### Step 4:
+  In the `main()` function, declare two integer variables: `lowerLimit` and `upperLimit`.
+### Step 5:
+  Prompt the user to enter the lower limit of the range.
+### Step 6:
+  Read and store the lower limit.
+### Step 7:
+  Prompt the user to enter the upper limit of the range.
+### Step 8:
+  Read and store the upper limit.
+### Step 9:
+  Display a message indicating that the even/odd numbers in the given range will be printed.
+### Step 10:
+  Call the recursive function `printEvenOdd(lowerLimit, upperLimit)`.
+### Step 11:
+  Inside the function `printEvenOdd(cur, limit)`:
+  - **Step 11.1:** If `cur > limit`, terminate the recursion.  
+  - **Step 11.2:** If `cur == limit`, print the value without a trailing comma.  
+  - **Step 11.3:** Otherwise, print the current value followed by a comma.  
+  - **Step 11.4:** Recursively call `printEvenOdd(cur + 2, limit)` to print the next number.
+### Step 12:
   Stop
 # Program:
+```c
+#include <stdio.h>
 
-#include<stdio.h>
-#define R 4
-#define C 4
+// Step 3: Recursive function
+void printEvenOdd(int cur, int limit) {
+    // Step 11.1: Termination condition
+    if (cur > limit) {
+        return;
+    }
 
-void spiralPrint(int m, int n, int a[R][C]){
-    int k = 0, l = 0, i;
+    // Step 11.2 & 11.3: Print current value
+    if (cur == limit) {
+        printf("%d", cur);   // last number, no trailing comma
+    } else {
+        printf("%d, ", cur);
+    }
 
-    while(k < m && l < n){
-        for(i = l; i < n; i++)
-            printf("%d ", a[k][i]);
-        k++;
+    // Step 11.4: Recursive call with step of 2
+    printEvenOdd(cur + 2, limit);
+}
 
-        for(i = k; i < m; i++)
-            printf("%d ", a[i][n-1]);
-        n--;
+int main() {
+    int lowerLimit, upperLimit;
 
-        if(k < m){
-            for(i = n-1; i >= l; i--)
-                printf("%d ", a[m-1][i]);
-            m--;
-        }
+    // Step 5: Prompt user
+    printf("Enter the lower limit: ");
+    scanf("%d", &lowerLimit);
 
-        if(l < n){
-            for(i = m-1; i >= k; i--)
-                printf("%d ", a[i][l]);
-            l++;
-        }
+    // Step 7: Prompt user
+    printf("Enter the upper limit: ");
+    scanf("%d", &upperLimit);
+
+    // Step 9: Display message
+    if (lowerLimit % 2 == 0) {
+        printf("Even numbers in the range %d to %d:\n", lowerLimit, upperLimit);
+    } else {
+        printf("Odd numbers in the range %d to %d:\n", lowerLimit, upperLimit);
+    }
+
+    // Step 10: Call recursive function
+    printEvenOdd(lowerLimit, upperLimit);
+
+    printf("\n");
+    return 0;
+}
+
+```
+# Output:
+<img width="1343" height="745" alt="image" src="https://github.com/user-attachments/assets/156249ae-edc8-4efc-a9d3-c44a870aa610" />
+
+# Result: 
+Thus, the program was implemented and executed successfully, and the required output was obtained.
+
+
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:24
+   Implement a C program that dynamically allocates memory using calloc(), accepts integer inputs from the user, computes their sum, and prints the sum.
+# Date : 
+# Aim:
+  To implement a C program that dynamically allocates memory for an array of integers using calloc(), accepts elements from the user, computes their sum, and displays the sum.
+# Algorithm:
+### Step 1:
+  Start
+### Step 2: 
+  Include the standard input-output library: #include<stdio.h>. 
+### Step 3:
+  a. Declare a pointer `ptr` to `int`.  
+  b. Declare integers `n`, `i`, and `sum` (initialize `sum = 0`).
+### Step 4:
+  Read the integer `n` from the user (the number of integers to be stored).
+### Step 5:
+  Use the `calloc()` function to allocate memory for `n` integers:  
+  `ptr = calloc(n, sizeof(int))`
+### Step 6:
+  If `ptr` is not `NULL`, continue to the next step; otherwise, memory allocation failed (the program exits).
+### Step 7:
+  For each `i` from `0` to `n - 1`:  
+  a. Read an integer from the user.  
+  b. Store it at memory location `ptr + i`.
+### Step 8:
+  For each `i` from `0` to `n - 1`:  
+  a. Access the value stored at `ptr + i`.  
+  b. Add it to `sum`.
+### Step 9:
+  Print the value of `sum`.
+### Step 10:
+  Call `free(ptr);` to release the memory allocated by `calloc()`.
+### Step 11:
+  Stop
+# Program:
+```c
+#include <stdio.h>
+#include <stdlib.h>   // for calloc() and free()
+
+int main() {
+    int *ptr;        // Step 3a: pointer to int
+    int n, i, sum = 0; // Step 3b: variables
+
+    // Step 4: Read number of integers
+    printf("Enter the number of integers: ");
+    scanf("%d", &n);
+
+    // Step 5: Allocate memory using calloc
+    ptr = (int *)calloc(n, sizeof(int));
+
+    // Step 6: Check if allocation succeeded
+    if (ptr == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1; // exit program
+    }
+
+    // Step 7: Accept elements from user
+    printf("Enter %d integers:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", (ptr + i));
+    }
+
+    // Step 8: Compute sum
+    for (i = 0; i < n; i++) {
+        sum += *(ptr + i);
+    }
+
+    // Step 9: Display sum
+    printf("Sum of the entered integers = %d\n", sum);
+
+    // Step 10: Free allocated memory
+    free(ptr);
+
+    return 0;
+}
+```
+# Output:
+<img width="1353" height="742" alt="image" src="https://github.com/user-attachments/assets/891bb0d6-bfff-476a-be8c-56dfd2413867" />
+
+# Result: 
+Thus, the program was implemented and executed successfully, and the required output was obtained.
+
+
+# 19AI304-Fundamentals-of-C-Programming-2025-Odd-M5
+# IAPR-5- Module 5 - FoC
+# Ex.No:25
+   Implement a C program that reads a set of integers into an array and displays the array elements using a user-defined function.
+# Date : 
+# Aim:
+  To implement a C program that reads integers into an array and displays the elements using a user-defined function.
+# Algorithm:
+### Step 1:
+  Start
+### Step 2: 
+  Include the standard input-output library: #include<stdio.h>. 
+### Step 3:
+  Declare the function prototype: `void displayArray(int *arr, int size);`
+### Step 4:
+  In the `main()` function, declare an integer array of size 5 and a loop variable.
+### Step 5:
+  Prompt the user to enter the required number of integers.
+### Step 6:
+  Read the integers from the user and store them in the array using a loop.
+### Step 7:
+  Call the `displayArray` function, passing the array and its size as arguments.
+### Step 8:
+  Define the function `displayArray(int *arr, int size)` to print the array elements:  
+  - Loop through the array using either pointer arithmetic (`*(arr + i)`) or array indexing (`arr[i]`).  
+  - Print each element.
+### Step 9:
+  Return to the `main()` function after displaying the array.
+### Step 10:
+  Stop
+# Program:
+```c
+#include <stdio.h>
+
+// Step 3: Function prototype
+void displayArray(int *arr, int size);
+
+int main() {
+    int arr[5];   // Step 4: Declare array of size 5
+    int i;
+
+    // Step 5: Prompt user
+    printf("Enter 5 integers:\n");
+
+    // Step 6: Read integers into array
+    for (i = 0; i < 5; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Step 7: Call displayArray function
+    printf("The array elements are:\n");
+    displayArray(arr, 5);
+
+    return 0;
+}
+
+// Step 8: Function definition
+void displayArray(int *arr, int size) {
+    int i;
+    for (i = 0; i < size; i++) {
+        // Using pointer arithmetic
+        printf("%d ", *(arr + i));
     }
     printf("\n");
 }
-
-int main(){
-    int a[R][C] = {
-        {1, 2, 3, 4},
-        {5, 6, 7, 8},
-        {9, 10, 11, 12},
-        {13, 14, 15, 16}
-    };
-
-    spiralPrint(R, C, a);
-
-    return 0;
-}
-
-
+```
 # Output:
-<img width="674" height="456" alt="image" src="https://github.com/user-attachments/assets/a2effe4f-1d8a-4e9b-a864-d90040e68dd2" />
-
-# Result: 
-Thus, the program was implemented and executed successfully, and the required output was obtained.
-
-# Ex.No:20
-  Build a C program to convert a string such that the first and last characters, as well as the characters before and after each space, are converted to uppercase. Implement this using a user-defined parameterized function without return.
-
-# Aim:
-To build a C program to convert a string as described above, using a user-defined parameterized function without return convertFirstCLastC(char str[]).
-# Algorithm:
-### Step 1:
-  Start
-### Step 2: 
-  Include the standard input-output library: #include<stdio.h>.  
-### Step 3: 
-  Declare a user-defined void function convertFirstCLastC(char str[]) that takes the string as a parameter.
-### Step 4: 
- Inside convertFirstCLastC(char str[]) function:
- - Find the length of the string len.  
- - Convert the first character str[0] to uppercase.  
- - Loop through the string from index 1 to len-2:  
-   - If a character is a space, capitalize the character before and after it.  
- - Convert the last character str[len-1] to uppercase.
-### Step 5: 
- In main() function:
- - Declare a string str[100].  
- - Read the input string from the user.  
- - Call the function convertFirstCLastC(char str[]).  
- - Print the modified string.
-### Step 6: 
- Stop
-# Program:
-
-#include<stdio.h>
-#include<ctype.h>
-#include<string.h>
-
-void convertFirstCLastC(char str[]){
-    int len = strlen(str);
-    if(len == 0) return;
-
-    str[0] = toupper(str[0]);
-    for(int i = 1; i < len - 1; i++){
-        if(str[i] == ' '){
-            str[i-1] = toupper(str[i-1]);
-            str[i+1] = toupper(str[i+1]);
-        }
-    }
-    str[len-1] = toupper(str[len-1]);
-}
-
-int main(){
-    char str[100];
-    scanf("%[^\n]s", str);
-
-    convertFirstCLastC(str);
-
-    printf("%s\n", str);
-    return 0;
-}
-
-
-# Output:
-
-<img width="674" height="456" alt="Screenshot 2025-11-19 113648" src="https://github.com/user-attachments/assets/1c9c6d53-494d-4533-a729-2b47e05e940c" />
-
+<img width="1355" height="753" alt="image" src="https://github.com/user-attachments/assets/ef7ed44b-06b6-43df-a42a-115ef758886c" />
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
