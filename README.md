@@ -391,5 +391,5 @@ void displayArray(int *arr, int size) {
 ```
 # Output:
 <img width="1355" height="753" alt="image" src="https://github.com/user-attachments/assets/ef7ed44b-06b6-43df-a42a-115ef758886c" />
-# Result: 
+### Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
